@@ -79,7 +79,7 @@ class _sysSerializer(serializers.Serializer):
 
 class WeatherSerializer(serializers.Serializer):
     """
-    Сериализатор для данных о погоде .
+    Сериализатор для данных о погоде.
     """
     coord=_coordSerializer()
     weather=serializers.ListField(child=_weatherSerializer())
@@ -90,3 +90,12 @@ class WeatherSerializer(serializers.Serializer):
     sys=_sysSerializer()
     timezone= serializers.IntegerField()
     name=serializers.CharField()
+
+class CurrencySerializer(serializers.Serializer):
+    """
+    Сериализатор для данных о валюте.
+    """
+    timestamp = serializers.IntegerField()
+    base = serializers.CharField()
+    date = serializers.CharField()
+    rates = serializers.DictField(child=serializers.FloatField())
