@@ -1,7 +1,7 @@
 """Представления Django"""
 import re
-from typing import Any
 
+from django.core.paginator import Paginator
 from django.core.cache import caches
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -65,8 +65,18 @@ def get_cities(request: Request) -> JsonResponse:
             }
         )
 
+    page = int
+    page = request.query_params.get("page")
+    if not page:
+        raise ValidationError(
+            {"codes": "Не передан номер страницы."}
+        )
+
     if cities := CityService().get_cities_by_codes(codes_set):
-        serializer = CitySerializer(cities, many=True)
+
+        paginator = Paginator(cities, per_page=3)
+        page_object = paginator.get_page(page)
+        serializer = CitySerializer(page_object, many=True)
 
         return JsonResponse(serializer.data, safe=False)
 
@@ -111,9 +121,17 @@ def get_countries(request: Request) -> JsonResponse:
         raise ValidationError(
             {"codes": "Не переданы ISO Alpha2 коды стран для поиска."}
         )
+    page = int
+    page = request.query_params.get("page")
+    if not page:
+        raise ValidationError(
+            {"codes": "Не передан номер страницы."}
+        )
 
     if countries := CountryService().get_countries_by_codes(codes_set):
-        serializer = CountrySerializer(countries, many=True)
+        paginator = Paginator(countries, per_page=3)
+        page_object = paginator.get_page(page)
+        serializer = CountrySerializer(page_object, many=True)
 
         return JsonResponse(serializer.data, safe=False)
 
