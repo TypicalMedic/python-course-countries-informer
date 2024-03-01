@@ -1,3 +1,6 @@
+"""
+Конфигурация приложений базы данных
+"""
 from django.apps import AppConfig
 
 

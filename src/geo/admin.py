@@ -1,3 +1,6 @@
+"""
+Настройка администрирования базы данных
+"""
 from django.contrib import admin
 
 from geo.models import Country, City

@@ -1,3 +1,6 @@
+"""
+Доступные для вызова URLs
+"""
 from django.urls import path
 
 from news.views import get_news
