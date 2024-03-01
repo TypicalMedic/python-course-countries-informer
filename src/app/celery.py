@@ -1,3 +1,6 @@
+"""
+Модуль запуска приложения
+"""
 import os
 
 from celery import Celery

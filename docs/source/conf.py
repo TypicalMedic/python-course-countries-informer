@@ -22,8 +22,8 @@ django.setup()
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Countries Informer Service"
-copyright = f"{date.today().year}, Michael"
-author = "Michael"
+copyright = f"{date.today().year}, Marusya"
+author = "Marusya"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
